@@ -27,6 +27,12 @@ const run = async () => {
       const products = await cursor.toArray();
       res.send(products);
     });
+    app.get("/products2", async (req, res) => {
+      const query = {};
+      const cursor = productCollection.find(query);
+      const products = await cursor.toArray();
+      res.send(products);
+    });
   } finally {
   }
 };
