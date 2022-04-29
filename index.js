@@ -60,6 +60,13 @@ const run = async () => {
       const result = await productCollection.updateOne(filter, update, option);
       res.send(result);
     });
+
+    // add new item
+    app.post("/additem", async (req, res) => {
+      const product = req.body;
+      const result = await productCollection.insertOne(product);
+      res.send(result);
+    });
   } finally {
   }
 };
