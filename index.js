@@ -30,6 +30,16 @@ const run = async () => {
       res.send(products);
     });
 
+    // get all products for my item
+    app.get("/myItem/:email", async (req, res) => {
+      const email = req.params.email;
+      console.log(email);
+      const query = { email };
+      const cursor = productCollection.find(query);
+      const products = await cursor.toArray();
+      res.send(products);
+    });
+
     // delete a product
     app.delete("/product/:id", async (req, res) => {
       const id = req.params.id;
