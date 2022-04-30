@@ -33,7 +33,7 @@ const run = async () => {
     // get all products for my item
     app.get("/myItem/:email", async (req, res) => {
       const email = req.params.email;
-      console.log(email);
+      // console.log(email);
       const query = { email };
       const cursor = productCollection.find(query);
       const products = await cursor.toArray();
@@ -58,7 +58,7 @@ const run = async () => {
     app.put("/delivered/:id", async (req, res) => {
       const id = req?.params?.id;
       const updateProduct = req?.body;
-      console.log(typeof updateProduct.quantity);
+      // console.log(typeof updateProduct.quantity);
       const filter = { _id: ObjectId(id) };
       const option = { upsert: true };
       const update = {
