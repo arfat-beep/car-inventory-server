@@ -49,7 +49,7 @@ const run = async () => {
       res.send({ token });
     });
 
-    // get all products
+    // get all products for specific email
     app.get("/products", verifyJWT, async (req, res) => {
       const email = req.query.email;
       const decodedEmail = req.decoded.email;
@@ -61,6 +61,15 @@ const run = async () => {
         res.send(products);
       }
     });
+
+    // get all products for home page
+    app.get("/allproducts", async (req, res) => {
+      const query = {};
+      const cursor = productCollection.find(query);
+      const products = await cursor.toArray();
+      res.send(products);
+    });
+
     // add new item
     app.post("/additem", async (req, res) => {
       const product = req.body;
